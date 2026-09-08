@@ -52,6 +52,30 @@ Workflow ツールを使ったことがあるトレーニーに、実行後の `
 
 Step 1 で書いた構造化ログと同じ発想(相関ID + 入出力の記録)であることを明示的に繋げる。
 
+### 発展課題(時間が余ったら・本編15分には含まない)
+
+`server.js` のリクエストログ(`method` と `path` のみ)も同じ発想で拡張できる。早く終わったトレーニーへの追加課題として提示する:
+
+```js
+app.use((req, res, next) => {
+  const requestId = crypto.randomUUID();
+  const startedAt = Date.now();
+  res.on("finish", () => {
+    console.log(JSON.stringify({
+      timestamp: new Date().toISOString(),
+      request_id: requestId,
+      method: req.method,
+      path: req.path,
+      status: res.statusCode,
+      duration_ms: Date.now() - startedAt,
+    }));
+  });
+  next();
+});
+```
+
+これも Step 2 の journal.jsonl と同じ発想(相関ID + 結果 + 所要時間)である点に触れられると良い。**全員必須の演習ではない**、早く終わった人向けの追加課題として扱う。
+
 ## 講師メモ
 - Step 1 は `crypto.randomUUID()` が Node 14.17+ で使える前提。トレーニーの Node バージョンを事前確認しておく
 - Step 2 で Workflow 未使用のトレーニーが多い場合、講師の journal.jsonl を見せるだけで進める

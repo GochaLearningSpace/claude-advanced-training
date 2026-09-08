@@ -44,9 +44,11 @@ console.log(`[ADMIN] task deleted: id=${removed.id} title="${removed.title}"`);
 
 **使うセクション**: 5. Log Engineering
 
-## 4. リクエストログの粒度(Log Engineering セクション用)
+## 4. リクエストログの粒度(Log Engineering セクション・発展課題)
 
-`server.js` のミドルウェアは `method` と `path` のみ。correlation ID もステータスコードも記録していない。ここを拡張させて、後段の Graph Engineering(Workflow の journal.jsonl 観察)との対比に繋げる。
+`server.js` のミドルウェアは `method` と `path` のみ。correlation ID もステータスコードも記録していない。
+
+**位置づけ**: 本編15分の必須演習ではない。`materials/05-log-engineering.md` の「発展課題(時間が余ったら)」として、早く終わったトレーニー向けに用意してある。全員に拡張させる想定ではない点に注意。
 
 ## 進行上の注意
 
