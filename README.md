@@ -59,7 +59,7 @@ ClaudeTraining/
 - [ ] 01-ecosystem-comparison.md の比較表、Codex/Antigravity の公式ドキュメントで最新仕様と裏取りする(知識カットオフから8ヶ月経過、変化が速いプロダクトのため)
 - [ ] 02-harness-engineering.md の Step 1、hook コマンドが現時点でプレースホルダーのまま(`<公式ドキュメントで確認した...コマンド>`)。当日までに実機で動作確認し、コピペで配布できる具体的なコマンドに差し替える
 - [ ] Real Estate Simulator の Self-Tests メニューをデモできる状態にしておく(3. Step 3)
-- [ ] ローカルLLM環境・AWSデプロイ経路のリハーサル(4. Self-host + AWS)
+- [ ] ローカルLLM環境の起動確認 + AWS App Runner での MiniTask デプロイリハーサル(4. Self-host + AWS、デプロイ先は App Runner に確定済み)
 - [ ] Claude Cowork のライセンス・提供状況を当日朝に再確認(8.)
 - [ ] samples/common-web を `npm install && npm start` で動作確認(クリーン環境で)
 - [ ] samples/gas-backup を実際に clasp push まで通しておく(予備として使う場合)
