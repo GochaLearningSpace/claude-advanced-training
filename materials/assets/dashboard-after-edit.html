@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <title>MiniTask — 進捗</title>
 <!--
-  GOOD EXAMPLE — 3. Artifacts + Design セクションの講評用サンプル。
+  AFTER(修正後)— 3. Artifacts + Design セクションの講評用サンプル。
   設計プラン:
     色: 紙面 #F3F5F0 / 墨 #1F2A24 / 淡墨 #5B6B60 / 罫線 #D8DED2 /
         アクセント(操作)#3D5A73 / 完了(意味色)#2E9E7A / 未完了(意味色)#D9722A
@@ -92,8 +92,8 @@
 
   .hero {
     display: flex;
-    align-items: baseline;
-    gap: 1.5rem;
+    flex-direction: column;
+    gap: 0.5rem;
     padding-bottom: 1.25rem;
     border-bottom: 1px solid var(--line);
   }
@@ -109,7 +109,7 @@
   .hero-caption {
     font-size: 0.9rem;
     color: var(--ink-muted);
-    max-width: 14rem;
+    max-width: 32rem;
   }
 
   .meter {
