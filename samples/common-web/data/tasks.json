@@ -1,0 +1,6 @@
+[
+  { "id": 1, "title": "Claude Code にログインする", "done": true },
+  { "id": 2, "title": "共通サンプルを clone する", "done": true },
+  { "id": 3, "title": "Harness Engineering の演習をやる", "done": false },
+  { "id": 4, "title": "Security チェックリストを適用する", "done": false }
+]

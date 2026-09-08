@@ -1,0 +1,12 @@
+{
+  "name": "minitask",
+  "version": "1.0.0",
+  "description": "Claude アドバンストトレーニング用の共通ハンズオンサンプル(タスク管理Webアプリ)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
