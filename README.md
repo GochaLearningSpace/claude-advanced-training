@@ -53,11 +53,11 @@ ClaudeTraining/
 
 ## 講師向け残タスク(当日までに)
 
-- [x] `common-web` + `gas-backup` を切り出し、独立リポジトリへ push 済み → https://github.com/GochaLearningSpace/minitask-handson (INSTRUCTOR_NOTES.md は含めていない、答え漏洩なし)
-- [ ] **最優先**: 上記リポジトリは現在 private。**当日、講師自身が public に切り替える**(`gh repo edit GochaLearningSpace/minitask-handson --visibility public`)。切り替え忘れると学生が clone できないので、当日の最初のチェック項目に入れる
-- [ ] `samples/common-web/INSTRUCTOR_NOTES.md` は `ClaudeTraining` 側にのみ残っている(意図通り)。今後 common-web の内容を更新する際は、`ClaudeTraining/samples/common-web` と `minitask-handson/common-web` の両方に反映すること(二重管理になっている点に注意)
+- [x] `ClaudeTraining` 自体を独立 private リポジトリ化 → https://github.com/GochaLearningSpace/claude-advanced-training (唯一の編集対象、INSTRUCTOR_NOTES.md 含む)
+- [x] `common-web` + `gas-backup` を学生配布用に切り出し → https://github.com/GochaLearningSpace/minitask-handson (private)。`scripts/publish-samples.sh` で `ClaudeTraining/samples` から自動同期(INSTRUCTOR_NOTES.md は自動的に除外される)。**編集は必ず `ClaudeTraining` 側だけで行い、変更後にこのスクリプトを実行すること**(minitask-handson を直接編集しない)
+- [ ] **最優先**: `minitask-handson` は現在 private。**当日、講師自身が public に切り替える**(`gh repo edit GochaLearningSpace/minitask-handson --visibility public`)。切り替え忘れると学生が clone できないので、当日の最初のチェック項目に入れる
 - [ ] 01-ecosystem-comparison.md の比較表、Codex/Antigravity の公式ドキュメントで最新仕様と裏取りする(知識カットオフから8ヶ月経過、変化が速いプロダクトのため)
-- [ ] 02-harness-engineering.md の hook コマンド、現行 Claude Code バージョンの hooks リファレンスで実際のフィールド名を確認し、動くコマンドに差し替える
+- [ ] 02-harness-engineering.md の Step 1、hook コマンドが現時点でプレースホルダーのまま(`<公式ドキュメントで確認した...コマンド>`)。当日までに実機で動作確認し、コピペで配布できる具体的なコマンドに差し替える
 - [ ] Real Estate Simulator の Self-Tests メニューをデモできる状態にしておく(3. Step 3)
 - [ ] ローカルLLM環境・AWSデプロイ経路のリハーサル(4. Self-host + AWS)
 - [ ] Claude Cowork のライセンス・提供状況を当日朝に再確認(8.)

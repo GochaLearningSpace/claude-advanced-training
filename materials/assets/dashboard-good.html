@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<title>MiniTask — 進捗</title>
+<!--
+  GOOD EXAMPLE — 3. Artifacts + Design セクションの講評用サンプル。
+  設計プラン:
+    色: 紙面 #F3F5F0 / 墨 #1F2A24 / 淡墨 #5B6B60 / 罫線 #D8DED2 /
+        アクセント(操作)#3D5A73 / 完了(意味色)#2E9E7A / 未完了(意味色)#D9722A
+        (完了/未完了ペアは dataviz スキルの validate_palette.js で light/dark 両方 PASS 済み)
+    書体: 見出し=セリフ(帳面らしさ)/ 本文=システムサンセリフ / 数字=等幅+tabular-nums
+    レイアウト: 「野帳(フィールドノート)」のコンセプト。上に完了率の大きな数字+罫線メーター、
+               下にチェックリストを帳簿の行のように並べる。完了行は消す/隠すのではなく淡色+取り消し線で残す。
+-->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗒️</text></svg>" />
+<style>
+  :root {
+    --paper: #F3F5F0;
+    --surface: #FFFFFF;
+    --ink: #1F2A24;
+    --ink-muted: #5B6B60;
+    --line: #D8DED2;
+    --accent: #3D5A73;
+    --done: #2E9E7A;
+    --pending: #D9722A;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #14181A;
+      --surface: #1B2023;
+      --ink: #E9EDE9;
+      --ink-muted: #96A39C;
+      --line: #2B3235;
+      --accent: #7FA3BE;
+      --done: #2E9E7A;
+      --pending: #D9722A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #14181A;
+    --surface: #1B2023;
+    --ink: #E9EDE9;
+    --ink-muted: #96A39C;
+    --line: #2B3235;
+    --accent: #7FA3BE;
+    --done: #2E9E7A;
+    --pending: #D9722A;
+  }
+  :root[data-theme="light"] {
+    --paper: #F3F5F0;
+    --surface: #FFFFFF;
+    --ink: #1F2A24;
+    --ink-muted: #5B6B60;
+    --line: #D8DED2;
+    --accent: #3D5A73;
+    --done: #2E9E7A;
+    --pending: #D9722A;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 2.5rem 1.5rem;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    display: flex;
+    justify-content: center;
+  }
+
+  main {
+    width: 100%;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  h1 {
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-weight: 400;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .hero {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hero-number {
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 3.4rem;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .hero-caption {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    max-width: 14rem;
+  }
+
+  .meter {
+    height: 6px;
+    border-radius: 0;
+    background: var(--line);
+    overflow: hidden;
+    display: flex;
+  }
+  .meter-fill {
+    background: var(--done);
+    height: 100%;
+  }
+
+  .status-row {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+  }
+  .status-row .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 0.4em;
+  }
+  .status-row .num {
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+
+  .ledger {
+    display: flex;
+    flex-direction: column;
+  }
+  .ledger-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .ledger-row:last-child { border-bottom: none; }
+
+  .checkbox {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--ink-muted);
+    flex-shrink: 0;
+  }
+  .checkbox.done {
+    background: var(--done);
+    border-color: var(--done);
+  }
+
+  .task-title {
+    font-size: 0.95rem;
+  }
+  .ledger-row.done .task-title {
+    color: var(--ink-muted);
+    text-decoration: line-through;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .meter-fill { transition: width 0.4s ease; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>MiniTask 進捗</h1>
+
+  <section class="hero">
+    <span class="hero-number">50%</span>
+    <span class="hero-caption">4件中2件完了。Harness Engineering と Security の演習が残っている。</span>
+  </section>
+
+  <section aria-label="完了率メーター">
+    <div class="meter"><div class="meter-fill" style="width: 50%;"></div></div>
+    <div class="status-row" style="margin-top: 0.6rem;">
+      <span><span class="dot" style="background: var(--done);"></span>完了 <span class="num">2</span></span>
+      <span><span class="dot" style="background: var(--pending);"></span>未完了 <span class="num">2</span></span>
+    </div>
+  </section>
+
+  <section class="ledger">
+    <div class="ledger-row done">
+      <span class="checkbox done"></span>
+      <span class="task-title">Claude Code にログインする</span>
+    </div>
+    <div class="ledger-row done">
+      <span class="checkbox done"></span>
+      <span class="task-title">共通サンプルを clone する</span>
+    </div>
+    <div class="ledger-row">
+      <span class="checkbox"></span>
+      <span class="task-title">Harness Engineering の演習をやる</span>
+    </div>
+    <div class="ledger-row">
+      <span class="checkbox"></span>
+      <span class="task-title">Security チェックリストを適用する</span>
+    </div>
+  </section>
+</main>
+</body>
+</html>
