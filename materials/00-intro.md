@@ -24,7 +24,7 @@
    - 質問があれば今のうちに
 
 ## 講師の当日最初のチェック(セミナー開始 "前" にやる、イントロ台本には含めない)
-- [ ] `minitask-handson` リポジトリを private → public に切り替える(`gh repo edit GochaLearningSpace/minitask-handson --visibility public`)。忘れると学生が clone できない
+- [ ] `minitask-handson` リポジトリを private → public に切り替える(`gh repo edit GochaLearningSpace/minitask-handson --visibility public`)。忘れるとトレーニーが clone できない
 
 ## 事前配布物(講義の数日前に送る)
 - `samples/common-web` の GitHub リンク + clone 手順
@@ -34,16 +34,16 @@
 ## common-web の clone 手順(事前配布資料に転記するもの)
 
 > ✅ 対応済み: `common-web` + `gas-backup` を切り出し、専用リポジトリへ push 済み → https://github.com/GochaLearningSpace/minitask-handson
-> **⚠️ 残作業**: 現在 **private** リポジトリのため、学生はまだ clone できない。当日までに以下のどちらかを行う:
-> - 各学生の GitHub アカウントを collaborator として招待する、または
+> **⚠️ 残作業**: 現在 **private** リポジトリのため、トレーニーはまだ clone できない。当日までに以下のどちらかを行う:
+> - 各トレーニーの GitHub アカウントを collaborator として招待する、または
 > - 講義の1〜2日前に public へ切り替える(INSTRUCTOR_NOTES.md 等の講師専用ファイルはこのリポジトリに含めていないので、public 化しても解答が漏れる心配はない)
 
-学生に配布する手順:
+トレーニーに配布する手順:
 
 ### 必要なもの(事前に確認させる)
 - Git がインストール済み(`git --version` で確認)
 - Node.js 18 以上がインストール済み(`node --version` で確認)
-- Git に不慣れな学生向けの代替: GitHub の「Code → Download ZIP」でも可(clone の代わりに ZIP 展開でOK)
+- Git に不慣れなトレーニー向けの代替: GitHub の「Code → Download ZIP」でも可(clone の代わりに ZIP 展開でOK)
 
 ### 手順
 
@@ -57,7 +57,7 @@ npm start
 
 ブラウザで `http://localhost:3000` を開く。
 
-### 完了チェックリスト(学生自身に確認させる)
+### 完了チェックリスト(トレーニー自身に確認させる)
 - [ ] `http://localhost:3000` が開き、"MiniTask" の画面が表示される
 - [ ] 新しいタスクをフォームから追加できる
 - [ ] タスクのチェックボックスをクリックすると完了状態になる

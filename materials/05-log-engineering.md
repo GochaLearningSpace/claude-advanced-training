@@ -46,12 +46,12 @@ console.log(JSON.stringify({
 
 ### Step 2: エージェント実行ログの観察(5分)
 
-Workflow ツールを使ったことがある学生に、実行後の `journal.jsonl` を見せてもらう(無ければ講師が画面共有)。
+Workflow ツールを使ったことがあるトレーニーに、実行後の `journal.jsonl` を見せてもらう(無ければ講師が画面共有)。
 
 問いかけ: 「なぜこのログがあると、途中から再開(resume)できるのか?」→ 「各 `agent()` 呼び出しの入力と結果がペアで記録されているから、同じ入力ならキャッシュを返せる」という結論に導く。
 
 Step 1 で書いた構造化ログと同じ発想(相関ID + 入出力の記録)であることを明示的に繋げる。
 
 ## 講師メモ
-- Step 1 は `crypto.randomUUID()` が Node 14.17+ で使える前提。学生の Node バージョンを事前確認しておく
-- Step 2 で Workflow 未使用の学生が多い場合、講師の journal.jsonl を見せるだけで進める
+- Step 1 は `crypto.randomUUID()` が Node 14.17+ で使える前提。トレーニーの Node バージョンを事前確認しておく
+- Step 2 で Workflow 未使用のトレーニーが多い場合、講師の journal.jsonl を見せるだけで進める
