@@ -51,7 +51,6 @@ router.put("/:id", (req, res) => {
   res.json(task);
 });
 
-// 管理者操作。Log Engineering セクションで「この操作だけ構造化ログを残す」演習に使う。
 router.delete("/:id", requireAdminKey, (req, res) => {
   const id = Number(req.params.id);
   const tasks = readTasks();

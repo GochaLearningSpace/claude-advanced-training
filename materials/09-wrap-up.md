@@ -8,7 +8,7 @@
    - Harness Engineering で作った hook のログ → Log Engineering で構造化
    - Harness Engineering で書いた権限スコープ → Security で見直し
    - Graph Engineering で手で組んだ pipeline/parallel → Cowork なら自動生成される、だからこそ設計を見る目が要る
-   - Ecosystem比較・Self-host/AWS は「今日の内容がClaude Codeだけの話ではない」ことの裏付け
+   - Ecosystem比較・Self-host(ローカルLLM) は「今日の内容がClaude Codeだけの話ではない」ことの裏付け
 
 2. **持ち帰ってほしいもの**(1分)
    - `handouts/security-checklist.md`(サプライチェーンチェックリスト)

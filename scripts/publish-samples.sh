@@ -21,9 +21,12 @@ git clone --quiet "$REPO_URL" "$WORK_DIR"
 rm -rf "$WORK_DIR/common-web" "$WORK_DIR/gas-backup"
 mkdir -p "$WORK_DIR/common-web" "$WORK_DIR/gas-backup"
 
-cp -r "$SRC_DIR/common-web/routes" "$SRC_DIR/common-web/lib" "$SRC_DIR/common-web/data" "$SRC_DIR/common-web/public" "$WORK_DIR/common-web/"
+cp -r "$SRC_DIR/common-web/routes" "$SRC_DIR/common-web/lib" "$SRC_DIR/common-web/data" "$SRC_DIR/common-web/public" "$SRC_DIR/common-web/exercises" "$WORK_DIR/common-web/"
 cp "$SRC_DIR/common-web/package.json" "$SRC_DIR/common-web/server.js" "$SRC_DIR/common-web/.env.example" "$SRC_DIR/common-web/.gitignore" "$SRC_DIR/common-web/README.md" "$WORK_DIR/common-web/"
 # INSTRUCTOR_NOTES.md はコピーしない(意図的)
+
+# training-concepts skill(トレーニーが概念質問できるQ&Aスキル)は配布対象
+cp -r "$SRC_DIR/common-web/.claude" "$WORK_DIR/common-web/.claude"
 
 cp -r "$SRC_DIR/gas-backup/." "$WORK_DIR/gas-backup/"
 cp "$SRC_DIR/README.md" "$WORK_DIR/README.md"
